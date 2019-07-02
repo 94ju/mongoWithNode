@@ -13,12 +13,12 @@ app.get('/home',(req,res)=>{
     )
 })
 
-app.get('/user',async(req,res)=>{
-   // res.set('Content-Type', "application/json");
+app.get('/users',async(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     const user=await getuser();
     res.send(user);
 })
+
 
 mongoose.connect(
     'mongodb://localhost/mongo-exercises'
@@ -50,7 +50,8 @@ async function getCourses(){
 }
 
 async function getuser(){
-    const user =await Course.find({name:"Node.js Course"});
+    // const user =await Course.find({name:"Node.js Course"});
+    const user =await Course.find();
     return user;
 }
 getuser();
