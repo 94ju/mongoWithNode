@@ -18,6 +18,11 @@ app.get('/users',async(req,res)=>{
     const user=await getuser();
     res.send(user);
 })
+app.post('/users',(req,res)=>{
+
+})
+
+}
 
 
 mongoose.connect(
