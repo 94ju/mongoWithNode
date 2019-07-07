@@ -1,6 +1,8 @@
 const mongoose=require("mongoose");
 const exprees = require("express");
+const bodyParser=require("body-parser");
 const app=exprees();
+app.use(bodyParser.json())
 
 app.get('/',async(req,res)=>{
     const cousers=await getCourses();
@@ -18,8 +20,20 @@ app.get('/users',async(req,res)=>{
     const user=await getuser();
     res.send(user);
 })
-app.put('/users',(req,res)=>{
-    
+app.post('/users',async(req,res)=>{
+    const course=new Course(
+        {
+            "tags":req.body.tags,
+            "date":req.body.date,
+            "name":req.body.name,
+            "author":req.body.author,
+            "isPublished":req.body.isPublished,
+            "price":req.body.price
+
+        }
+    )
+    await course.save();
+    res.send(course)
 })
 
 
