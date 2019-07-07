@@ -18,11 +18,11 @@ app.get('/users',async(req,res)=>{
     const user=await getuser();
     res.send(user);
 })
-app.post('/users',(req,res)=>{
-
+app.put('/users',(req,res)=>{
+    
 })
 
-}
+
 
 
 mongoose.connect(
@@ -59,6 +59,16 @@ async function getuser(){
     const user =await Course.find();
     return user;
 }
+ function addUser(){
+    const user=new Course({"tags":["angular check","frontend"],
+    "date":"2018-01-24T21:56:15.353Z",
+    "name":"Flask",
+    "author":"Janith",
+    "isPublished":true,
+    "price":15});
+    user.save();
+}
+// addUser();
 getuser();
 //getCourses();
 
